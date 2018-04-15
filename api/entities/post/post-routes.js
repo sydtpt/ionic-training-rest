@@ -27,11 +27,9 @@ module.exports = (function() {
             res.send({
                 message: 'Post sent'
             });	
-        }).catch(function(){
+        }).catch(function(err){
             res.status(500);
-            res.send({
-                message: 'Post not sent'
-            });
+            res.send(err);
         });    
 			
     });
