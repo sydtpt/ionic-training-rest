@@ -4,6 +4,6 @@ var UserSchema = new mongoose.Schema({
     password : {type : String, required : [true, 'password is required'] }
 }, {timestamps: true});
 
-var App = mongoose.model('App', UserSchema);
+var User = mongoose.model('User', UserSchema);
 
-module.exports = App;
+module.exports = User;

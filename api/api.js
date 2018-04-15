@@ -1,9 +1,9 @@
 module.exports = (function() {
     var router = require('express').Router();
 
-    // router.use('/v1/data', require('./entities/entities-routes'));
-    // router.use('/v1/'    , require('./modules/modules-routes.js'));
     router.use('/user', require('./entities/user/user-routes'));
+    router.use('/posts', require('./entities/feed/feed-routes'));
+    router.use('/post', require('./entities/post/post-routes'));
 
     return router;
 })();

@@ -5,6 +5,7 @@
 	var express = require("express");
 	var bodyParser = require('body-parser');
 	var mongoose = require('mongoose');
+	var cors = require('cors');
 
 	var port = process.env.REST_PORT || 8085;
 	var dbHost = process.env.MONGO_HOST || "localhost";
@@ -15,6 +16,7 @@
 
 	app.use(bodyParser.urlencoded({ extended: true }));
 	app.use(bodyParser.json({ limit: '10mb' }));
+	app.use(cors());
 
 	mongoose.connect(dbUrl, { reconnectTries: Number.MAX_VALUE, autoReconnect: true, useMongoClient: true });
 
