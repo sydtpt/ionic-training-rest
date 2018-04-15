@@ -31,7 +31,6 @@ module.exports = (function() {
             res.status(500);
             res.send(err);
         });    
-			
     });
 
     router.post('/:postId',function(req,res){
