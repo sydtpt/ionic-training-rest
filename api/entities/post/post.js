@@ -4,7 +4,6 @@ var PostSchema = new mongoose.Schema({
     user : { type : String, required : [true, 'user is required'] },
     photo : { type : String, required : [true, 'photo is required'] },
     legend : { type : String, required : [true, 'legend is required'] },
-    date : { type : String, required : [true, 'username is required'] },
     likes: [{
         username: String,
     }],
