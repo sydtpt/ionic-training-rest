@@ -13,10 +13,14 @@ module.exports = (function() {
         post.photo = req.body.image;
         if(!req.body.user){
             post.user = 'Totver'
+        }else{
+            post.user = req.body.user;
         }
 
         if(!req.body.legend){
             post.legend = '';
+        }else{
+            post.legend = req.body.legend;
         }
         post.comments = [];
         post.likes = [];
