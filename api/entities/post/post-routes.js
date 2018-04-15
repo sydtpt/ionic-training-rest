@@ -16,12 +16,8 @@ module.exports = (function() {
         }else{
             post.user = req.body.user;
         }
-
-        if(!req.body.legend){
-            post.legend = '';
-        }else{
-            post.legend = req.body.legend;
-        }
+        
+        post.legend = req.body.legend;
         post.comments = [];
         post.likes = [];
 
