@@ -22,11 +22,18 @@ module.exports = (function() {
         post.likes = [];
 
         post = new Post(post);
-        post.save();    
-        res.status(201);
-        res.send({
-            message: 'Post sent'
-        });				
+        post.save().then(function(){
+            res.status(201);
+            res.send({
+                message: 'Post sent'
+            });	
+        }).catch(function(){
+            res.status(500);
+            res.send({
+                message: 'Post not sent'
+            });
+        });    
+			
     });
 
     router.post('/:postId',function(req,res){
