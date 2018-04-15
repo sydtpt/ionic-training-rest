@@ -8,7 +8,7 @@ module.exports = (function() {
             res.send({message: 'image must be passed!'});
             return;
         }
-        let post;
+        let post = {};
         
         post.photo = req.body.image;
         if(!req.body.user){
