@@ -34,15 +34,64 @@ module.exports = (function() {
     });
 
     router.post('/:postId',function(req,res){
-        //like
-        Post.findById(req.params.postId, function (err, post) { 
-            post.likes.push({username: req.body.user});
-            post.save();    
-            res.status(201);
+        if(!req.query.action){
+            res.status(400);
             res.send({
-                message: 'Post liked'
-            });
-        });
+                message: 'queryparam action is required! Options: like or comment'
+            });	
+            return;
+        }
+
+        if(req.query.action === 'like'){
+            if(!req.body.username){
+                res.status(400);
+                res.send({
+                    message: 'field username is required!'
+                });	
+                return;
+            }
+            Post.findById(req.params.postId, function (err, post) { 
+                post.likes.push({username: req.body.user});
+                post.save().then(function(){
+                    res.status(201);
+                    res.send({
+                        message: 'Post liked'
+                    });
+                }).catch(function(err){
+                    res.status(500);
+                    res.send(err);
+                });    
+            });        
+        }
+
+        if(req.query.action === 'comment'){
+            if(!req.body.username){
+                res.status(400);
+                res.send({
+                    message: 'field username is required!'
+                });	
+                return;
+            }
+            if(!req.body.comment){
+                res.status(400);
+                res.send({
+                    message: 'field comment is required!'
+                });	
+                return;
+            }
+            Post.findById(req.params.postId, function (err, post) { 
+                post.comments.push({username: req.body.username, comment: req.body.comment});
+                post.save().then(function(){
+                    res.status(201);
+                    res.send({
+                        message: 'comment registered!'
+                    });
+                }).catch(function(err){
+                    res.status(500);
+                    res.send(err);
+                });    
+            });        
+        }   
     });
     return router;
 })();
