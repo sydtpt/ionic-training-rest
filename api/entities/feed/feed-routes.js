@@ -12,8 +12,8 @@ module.exports = (function() {
             res.status(200);
             let response = {
                 posts:posts 
-            }
-            res.send(posts);
+            };
+            res.send(response);
         });
     });
 
